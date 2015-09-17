@@ -5,8 +5,16 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+
 </head>
 <body>
+<% if current_user %>
+  <p>Hello, <%= current_user.user_name %></p>
+  <p><%= button_to "logout", "/session", method: :delete %></p>
+<% else %>
+  <p>Please login at <%= link_to "here", new_session_url %></p>
+<% end %>
 
 <%= yield %>
 

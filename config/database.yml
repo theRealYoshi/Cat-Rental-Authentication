@@ -1,5 +1,5 @@
 development:
-  adapter: postgresql
+  adapter: sqlite3
   database: ninety_nine_cats_dev
   host: 127.0.0.1
   pool: 5

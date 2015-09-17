@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   has_many :cats
+  has_many :requesters, class_name: "CatRentalRequest", foreign_key: :user_id, primary_key: :id
 
   validates :user_name, presence: true
   validates :password_digest, presence: { message: "Password can't be blank"}
@@ -10,6 +11,8 @@ class User < ActiveRecord::Base
 
   after_initialize :ensure_session_token
 
+
+  #ensure session token conditional where can be logged in if ocming from different devices or ips
   def ensure_session_token
     self.session_token ||= self.class.generate_session_token
   end
